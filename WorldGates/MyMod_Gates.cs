@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -98,7 +99,7 @@ namespace WorldGates {
 					worldArea: worldArea,
 					strength: hp,
 					maxRegenStrength: hp,
-					strengthRegenPerTick: (float.MaxValue * 0.5f) - 1f,
+					strengthRegenPerTick: (float)((double)Int32.MaxValue * 0.5d) - 1f,
 					color: color,
 					isSaveable: false
 				);

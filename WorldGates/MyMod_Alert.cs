@@ -1,7 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
-using ModLibsCore.Services.Hooks.LoadHooks;
 using SoulBarriers.Barriers.BarrierTypes;
 using SoulBarriers.Barriers.BarrierTypes.Rectangular;
 
