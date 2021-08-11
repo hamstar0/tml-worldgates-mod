@@ -6,9 +6,7 @@ using Terraria.ModLoader;
 using ModLibsCore.Classes.Errors;
 using ModLibsCore.Libraries.Debug;
 using ModLibsGeneral.Libraries.World;
-using SoulBarriers;
 using SoulBarriers.Barriers;
-using SoulBarriers.Barriers.BarrierTypes;
 
 
 namespace WorldGates {
@@ -87,26 +85,6 @@ namespace WorldGates {
 
 			//
 
-			Barrier createWorldBarrier( int hp, Rectangle tileArea, BarrierColor color ) {
-				var worldArea = new Rectangle(
-					x: tileArea.X * 16,
-					y: tileArea.Y * 16,
-					width: tileArea.Width * 16,
-					height: tileArea.Height * 16
-				);
-
-				return SoulBarriersAPI.CreateWorldBarrier(
-					worldArea: worldArea,
-					strength: hp,
-					maxRegenStrength: hp,
-					strengthRegenPerTick: (float)((double)Int32.MaxValue * 0.5d) - 1f,
-					color: color,
-					isSaveable: false
-				);
-			}
-
-			//
-
 			var dungeonArea = new Rectangle(
 				x: isDungeonLeft
 					? Main.dungeonX + 50
@@ -147,35 +125,11 @@ namespace WorldGates {
 
 			//
 			
-			this.DungeonGate = createWorldBarrier(
-				hp: 20,
-				tileArea: dungeonArea,
-				color: BarrierColor.BigBlue
-			);
-
-			this.JungleGate = createWorldBarrier(
-				hp: 30,
-				tileArea: jungleArea,
-				color: BarrierColor.Green
-			);
-
-			this.RockLayerGate = createWorldBarrier(
-				hp: 25,
-				tileArea: rockLayerArea,
-				color: BarrierColor.White
-			);
-			
-			this.LavaLayerGate = createWorldBarrier(
-				hp: 40,
-				tileArea: lavaLayerArea,
-				color: BarrierColor.Yellow
-			);
-			
-			this.UnderworldGate = createWorldBarrier(
-				hp: 75,
-				tileArea: underworldArea,
-				color: BarrierColor.Red
-			);
+			this.DungeonGate = GateBarrier.CreateGateBarrier( 20, dungeonArea, BarrierColor.BigBlue );
+			this.JungleGate = GateBarrier.CreateGateBarrier( 30, jungleArea, BarrierColor.Green );
+			this.RockLayerGate = GateBarrier.CreateGateBarrier( 25, rockLayerArea, BarrierColor.White );
+			this.LavaLayerGate = GateBarrier.CreateGateBarrier( 40, lavaLayerArea, BarrierColor.Yellow );
+			this.UnderworldGate = GateBarrier.CreateGateBarrier( 75, underworldArea, BarrierColor.Red );
 		}
 	}
 }
