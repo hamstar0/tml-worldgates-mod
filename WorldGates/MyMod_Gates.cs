@@ -84,39 +84,32 @@ namespace WorldGates {
 			}
 
 			//
+			
+			Rectangle getTallBarrier( int tileX ) {
+				return new Rectangle(
+					x: tileX,
+					y: 1,
+					width: barrierThick,
+					height: (int)Main.rockLayer
+				);
+			}
+			
+			Rectangle getFatBarrier( int tileY ) {
+				return new Rectangle(
+					x: 1,
+					y: tileY,
+					width: Main.maxTilesX - 2,
+					height: barrierThick
+				);
+			}
 
-			var dungeonArea = new Rectangle(
-				x: isDungeonLeft
-					? Main.dungeonX + 50
-					: Main.dungeonX - 50,
-				y: 1,
-				width: barrierThick,
-				height: (int)Main.rockLayer
-			);
-			var jungleArea = new Rectangle(
-				x: jungleX,
-				y: 1,
-				width: barrierThick,
-				height: (int)Main.rockLayer
-			);
-			var rockLayerArea = new Rectangle(
-				x: 1,
-				y: WorldLocationLibraries.RockLayerTopTileY,
-				width: Main.maxTilesX - 2,
-				height: barrierThick
-			);
-			var lavaLayerArea = new Rectangle(
-				x: 1,
-				y: lavaLine,
-				width: Main.maxTilesX - 2,
-				height: barrierThick
-			);
-			var underworldArea = new Rectangle(
-				x: 1,
-				y: WorldLocationLibraries.UnderworldLayerTopTileY,
-				width: Main.maxTilesX - 2,
-				height: barrierThick
-			);
+			//
+
+			Rectangle dungeonArea = getTallBarrier( Main.dungeonX + (isDungeonLeft ? 50 : -50) );
+			Rectangle jungleArea = getTallBarrier( jungleX );
+			Rectangle rockLayerArea = getFatBarrier( WorldLocationLibraries.RockLayerTopTileY );
+			Rectangle lavaLayerArea = getFatBarrier( lavaLine );
+			Rectangle underworldArea = getFatBarrier( WorldLocationLibraries.UnderworldLayerTopTileY );
 			//LogLibraries.Log( "dungeonArea: "+dungeonArea );
 			//LogLibraries.Log( "jungleArea: "+jungleArea );
 			//LogLibraries.Log( "rockLayerArea: "+rockLayerArea );
