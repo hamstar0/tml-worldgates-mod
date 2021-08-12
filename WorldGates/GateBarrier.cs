@@ -46,7 +46,7 @@ namespace WorldGates {
 						  isSaveable: isSaveable
 					) {
 			this.OnBarrierBarrierCollision.Add( ( barrier ) => {
-				if( barrier is AccessBarrier ) {
+				if( barrier is AccessBarrier || !barrier.IsActive ) {
 					return;
 				}
 
