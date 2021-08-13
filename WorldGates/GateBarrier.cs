@@ -45,11 +45,11 @@ namespace WorldGates {
 						  color: color,
 						  isSaveable: isSaveable
 					) {
-			this.OnBarrierBarrierCollision.Add( ( barrier ) => {
-				if( barrier is AccessBarrier ) {
-					return;
-				}
+			this.OnPreBarrierBarrierCollision.Add( ( barrier ) => {
+				return !(barrier is AccessBarrier) && barrier.IsActive;
+			} );
 
+			this.OnBarrierBarrierCollision.Add( ( barrier ) => {
 				if( this.Strength >= 1 ) {
 					Main.NewText( "Gate barrier is too strong. +"+this.Strength+" strength needed to breach.", Color.Yellow );
 					Main.PlaySound( SoundID.NPCHit53 );
