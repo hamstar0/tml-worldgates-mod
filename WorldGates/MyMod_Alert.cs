@@ -57,9 +57,9 @@ namespace WorldGates {
 					+" chances are you've encountered one of your world's barrier gates. Do NOT try to cross these!"
 					+" They are invariably destructive to all non-passive objects that cross their path."
 					+"\n\nThe only safe way to cross is to use a P.B.G (Personal Barrier Generator) item with enough"
-					+"juice to overpower the gate barrier, thus rendering it inert.",
+					+"juice to overpower the gate, thus rendering it inert.",
 				modOfOrigin: WorldGatesMod.Instance,
-				parentMessage: Messages.MessagesAPI.ModInfoCategoryMsg
+				parentMessage: Messages.MessagesAPI.HintsTipsCategoryMsg
 			);
 		}
 	}
