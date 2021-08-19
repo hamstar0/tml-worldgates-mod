@@ -20,5 +20,8 @@ namespace WorldGates {
 		
 		[DefaultValue( true )]
 		public bool StartNewPlayersWithPBG { get; set; } = true;
+		
+		[DefaultValue( true )]
+		public bool WarnAboutGatesAndPBG { get; set; } = true;
 	}
 }

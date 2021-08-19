@@ -41,6 +41,11 @@ namespace WorldGates {
 		////////////////
 
 		private void AlertForGateProximity( Barrier barrier ) {
+			var config = WorldGatesConfig.Instance;
+			if( !config.Get<bool>(nameof(config.WarnAboutGatesAndPBG)) ) {
+				return;
+			}
+
 			if( ModLoader.GetMod("Messages") != null ) {
 				WorldGatesMod.AlertForGateProximity_Messages( barrier );
 			} else {
@@ -59,6 +64,8 @@ namespace WorldGates {
 					+"\n\nThe only safe way to cross is to use a P.B.G (Personal Barrier Generator) item with enough"
 					+"juice to overpower the gate, thus rendering it inert.",
 				modOfOrigin: WorldGatesMod.Instance,
+				alertPlayer: true,
+				isImportant: false,
 				parentMessage: Messages.MessagesAPI.HintsTipsCategoryMsg
 			);
 		}
