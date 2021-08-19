@@ -42,32 +42,56 @@ namespace WorldGates {
 
 		private void AlertForGateProximity( Barrier barrier ) {
 			var config = WorldGatesConfig.Instance;
-			if( !config.Get<bool>(nameof(config.WarnAboutGatesAndPBG)) ) {
+			if( !config.Get<bool>(nameof(config.AlertAboutGates)) ) {
 				return;
 			}
 
 			if( ModLoader.GetMod("Messages") != null ) {
 				WorldGatesMod.AlertForGateProximity_Messages( barrier );
 			} else {
-				Main.NewText( "A magical barrier blocks your path. Use a P.B.G to cross.", new Color(147, 0, 255) );
+				if( config.Get<bool>(nameof(config.WarnAboutGatesAndPBG)) ) {
+					Main.NewText(
+						"A magical gate barrier blocks your path. Use a P.B.G to cross.",
+						new Color( 147, 0, 255 )
+					);
+				} else {
+					Main.NewText(
+						"A magical gate barrier blocks your path.",
+						new Color( 147, 0, 255 )
+					);
+				}
 			}
 		}
 
 		////
 
 		private static void AlertForGateProximity_Messages( Barrier barrier ) {
-			Messages.MessagesAPI.AddMessage(
-				title: "Beware gate barriers!",
-				description: "If you encounter a large and very long stream of mysterious energy in your travels,"
-					+" chances are you've encountered one of your world's barrier gates. Do NOT try to cross these!"
-					+" They are invariably destructive to all non-passive objects that cross their path."
-					+"\n\nThe only safe way to cross is to use a P.B.G (Personal Barrier Generator) item with enough"
-					+"juice to overpower the gate, thus rendering it inert.",
-				modOfOrigin: WorldGatesMod.Instance,
-				alertPlayer: true,
-				isImportant: false,
-				parentMessage: Messages.MessagesAPI.HintsTipsCategoryMsg
-			);
+			var config = WorldGatesConfig.Instance;
+			if( config.Get<bool>( nameof(config.WarnAboutGatesAndPBG) ) ) {
+				Messages.MessagesAPI.AddMessage(
+					title: "Beware world gate barriers!",
+					description: "The only safe way to cross these is to use a P.B.G (Personal Barrier Generator)"
+						+" item with enough juice to over-power the gate, thus rendering it inert.",
+					modOfOrigin: WorldGatesMod.Instance,
+					alertPlayer: true,
+					isImportant: false,
+					parentMessage: Messages.MessagesAPI.HintsTipsCategoryMsg
+				);
+			}
+			
+			if( config.Get<bool>(nameof(config.AlertAboutGates)) ) {
+				Messages.MessagesAPI.AddMessage(
+					title: "World Gates",
+					description: "If in your travels you encounter a large and very long stream of mysterious energy,"
+						+" chances are you've encountered one of your world's barrier gates. Do NOT try to cross"
+						+" these without the right means! They are invariably destructive to all non-passive objects"
+						+" that come into contact with.",
+					modOfOrigin: WorldGatesMod.Instance,
+					alertPlayer: true,
+					isImportant: false,
+					parentMessage: Messages.MessagesAPI.HintsTipsCategoryMsg
+				);
+			}
 		}
 	}
 }
