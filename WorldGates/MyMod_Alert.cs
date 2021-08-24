@@ -85,11 +85,16 @@ namespace WorldGates {
 					description: "If in your travels you encounter a large and very long stream of mysterious energy,"
 						+" chances are you've encountered one of your world's barrier gates. Do NOT try to cross"
 						+" these without the right means! They are invariably destructive to all non-passive objects"
-						+" that come into contact with.",
+						+" that come into contact with."
+						+"\n \n"
+						+"These gate barriers appear to have been made to repel anyone who isn't an island native."
+						+" Due to their lethality, they were probably not made for the benefit of outsiders,"
+						+" but it's unclear if they exist necessarily to keep something out, or in. They do"
+						+" appear to get stronger with depth, however...",
 					modOfOrigin: WorldGatesMod.Instance,
 					alertPlayer: true,
 					isImportant: false,
-					parentMessage: Messages.MessagesAPI.HintsTipsCategoryMsg
+					parentMessage: Messages.MessagesAPI.GameInfoCategoryMsg
 				);
 			}
 		}
