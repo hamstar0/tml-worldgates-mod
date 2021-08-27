@@ -73,6 +73,7 @@ namespace WorldGates {
 		////////////////
 
 		private void InitializeGates() {
+			var config = WorldGatesConfig.Instance;
 			int barrierThick = 10;
 
 			bool isDungeonLeft = Main.dungeonX < (Main.maxTilesX / 2);
@@ -110,6 +111,7 @@ namespace WorldGates {
 			Rectangle rockLayerArea = getFatBarrier( WorldLocationLibraries.RockLayerTopTileY );
 			Rectangle lavaLayerArea = getFatBarrier( lavaLine );
 			Rectangle underworldArea = getFatBarrier( WorldLocationLibraries.UnderworldLayerTopTileY );
+			Rectangle skyArea = getFatBarrier( WorldLocationLibraries.SkyLayerBottomTileY );
 			//LogLibraries.Log( "dungeonArea: "+dungeonArea );
 			//LogLibraries.Log( "jungleArea: "+jungleArea );
 			//LogLibraries.Log( "rockLayerArea: "+rockLayerArea );
@@ -118,11 +120,36 @@ namespace WorldGates {
 
 			//
 			
-			this.DungeonGate = GateBarrier.CreateGateBarrier( 20, dungeonArea, BarrierColor.BigBlue );
-			this.JungleGate = GateBarrier.CreateGateBarrier( 30, jungleArea, BarrierColor.Green );
-			this.RockLayerGate = GateBarrier.CreateGateBarrier( 25, rockLayerArea, BarrierColor.White );
-			this.LavaLayerGate = GateBarrier.CreateGateBarrier( 40, lavaLayerArea, BarrierColor.Yellow );
-			this.UnderworldGate = GateBarrier.CreateGateBarrier( 75, underworldArea, BarrierColor.Red );
+			this.DungeonGate = GateBarrier.CreateGateBarrier(
+				config.Get<int>(nameof(config.DungeonGateHp)),
+				dungeonArea,
+				BarrierColor.BigBlue
+			);
+			this.JungleGate = GateBarrier.CreateGateBarrier(
+				config.Get<int>(nameof(config.JungleGateHp)),
+				jungleArea,
+				BarrierColor.Green
+			);
+			this.RockLayerGate = GateBarrier.CreateGateBarrier(
+				config.Get<int>(nameof(config.RockLayerGateHp)),
+				rockLayerArea,
+				BarrierColor.White
+			);
+			this.LavaLayerGate = GateBarrier.CreateGateBarrier(
+				config.Get<int>(nameof(config.LavaLayerGateHp)),
+				lavaLayerArea,
+				BarrierColor.Yellow
+			);
+			this.UnderworldGate = GateBarrier.CreateGateBarrier(
+				config.Get<int>(nameof(config.UnderworldGateHp)),
+				underworldArea,
+				BarrierColor.Red
+			);
+			this.SkyGate = GateBarrier.CreateGateBarrier(
+				config.Get<int>(nameof(config.SkyGateHp)),
+				skyArea,
+				BarrierColor.White
+			);
 		}
 	}
 }

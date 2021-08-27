@@ -29,6 +29,7 @@ namespace WorldGates {
 		public Barrier RockLayerGate { get; private set; }
 		public Barrier LavaLayerGate { get; private set; }
 		public Barrier UnderworldGate { get; private set; }
+		public Barrier SkyGate { get; private set; }
 
 
 
