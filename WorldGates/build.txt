@@ -1,6 +1,6 @@
 displayName = World Gates
 author = hamstar
-version = 1.2.0
+version = 1.2.1
 modReferences = ModLibsCore@1.2.0, ModLibsGeneral@1.2.0, SoulBarriers@0.21.1
 weakReferences = Messages@1.1.2
 buildIgnore = *.csproj, *.user, *.bat, obj\*, bin\*, .vs\*, .git\*
