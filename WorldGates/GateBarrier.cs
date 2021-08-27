@@ -38,12 +38,12 @@ namespace WorldGates {
 
 		public GateBarrier( int strength, Rectangle worldArea, BarrierColor color, bool isSaveable )
 					: base(
-						  strength: strength,
-						  maxRegenStrength: strength,
-						  strengthRegenPerTick: (float)((double)Int32.MaxValue * 0.5d) - 1f,
-						  worldArea: worldArea,
-						  color: color,
-						  isSaveable: isSaveable
+						strength: strength,
+						maxRegenStrength: strength,
+						strengthRegenPerTick: (float)((double)Int32.MaxValue * 0.5d) - 1f,
+						worldArea: worldArea,
+						color: color,
+						isSaveable: isSaveable
 					) {
 			this.OnPreBarrierBarrierCollision.Add( ( barrier ) => {
 				return !(barrier is AccessBarrier) && barrier.IsActive;
