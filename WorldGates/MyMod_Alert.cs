@@ -68,18 +68,23 @@ namespace WorldGates {
 		private static void AlertForGateProximity_Messages( Barrier barrier ) {
 			var config = WorldGatesConfig.Instance;
 			if( config.Get<bool>( nameof(config.WarnAboutGatesAndPBG) ) ) {
+				string id = "WorldGates_VsPBG";
+
 				Messages.MessagesAPI.AddMessage(
 					title: "Beware world gate barriers!",
 					description: "The only safe way to cross these is to use a P.B.G (Personal Barrier Generator)"
 						+" item with enough juice to over-power the gate, thus rendering it inert.",
 					modOfOrigin: WorldGatesMod.Instance,
-					alertPlayer: true,
+					alertPlayer: Messages.MessagesAPI.IsUnread( id ),
 					isImportant: false,
-					parentMessage: Messages.MessagesAPI.HintsTipsCategoryMsg
+					parentMessage: Messages.MessagesAPI.HintsTipsCategoryMsg,
+					id: id
 				);
 			}
 			
 			if( config.Get<bool>(nameof(config.AlertAboutGates)) ) {
+				string id = "WorldGates_Overview";
+
 				Messages.MessagesAPI.AddMessage(
 					title: "World Gates",
 					description: "If in your travels you encounter a large and very long stream of mysterious energy,"
@@ -92,9 +97,10 @@ namespace WorldGates {
 						+" but it's unclear if they exist necessarily to keep something out, or in. They do"
 						+" appear to get stronger with depth, however...",
 					modOfOrigin: WorldGatesMod.Instance,
-					alertPlayer: true,
+					alertPlayer: Messages.MessagesAPI.IsUnread( id ),
 					isImportant: false,
-					parentMessage: Messages.MessagesAPI.GameInfoCategoryMsg
+					parentMessage: Messages.MessagesAPI.GameInfoCategoryMsg,
+					id: id
 				);
 			}
 		}
