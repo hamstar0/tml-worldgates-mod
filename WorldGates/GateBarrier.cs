@@ -12,7 +12,7 @@ using SoulBarriers.Barriers.BarrierTypes.Rectangular.Access;
 
 namespace WorldGates {
 	public class GateBarrier : AccessBarrier {
-		public static Barrier CreateGateBarrier( int hp, Rectangle tileArea, BarrierColor color ) {
+		public static Barrier CreateGateBarrier( double strength, Rectangle tileArea, BarrierColor color ) {
 			var worldArea = new Rectangle(
 				x: tileArea.X * 16,
 				y: tileArea.Y * 16,
@@ -22,7 +22,7 @@ namespace WorldGates {
 			
 			var barrier = new GateBarrier(
 				worldArea: worldArea,
-				strength: hp,
+				strength: strength,
 				color: color,
 				isSaveable: false
 			);
@@ -36,7 +36,7 @@ namespace WorldGates {
 
 		////////////////
 
-		public GateBarrier( int strength, Rectangle worldArea, BarrierColor color, bool isSaveable )
+		public GateBarrier( double strength, Rectangle worldArea, BarrierColor color, bool isSaveable )
 					: base(
 						strength: strength,
 						maxRegenStrength: strength,
