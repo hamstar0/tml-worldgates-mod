@@ -50,8 +50,15 @@ namespace WorldGates {
 			} );
 
 			this.OnBarrierBarrierCollision.Add( ( barrier ) => {
-				if( this.Strength >= 1 ) {
-					Main.NewText( "Gate barrier is too strong. +"+this.Strength+" strength needed to breach.", Color.Yellow );
+				if( this.Strength > 0d ) {
+					string str;
+					if( (this.Strength % 1d) > 0d ) {
+						str = ((int)this.Strength + (this.Strength % 1d)).ToString("N2");
+					} else {
+						str = ((int)this.Strength).ToString();
+					}
+
+					Main.NewText( "Gate barrier is too strong. +"+str+" strength needed to breach.", Color.Yellow );
 					Main.PlaySound( SoundID.NPCHit53 );
 				} else {
 					Main.NewText( "Access granted.", Color.Lime );
