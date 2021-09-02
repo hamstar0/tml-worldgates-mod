@@ -123,32 +123,32 @@ namespace WorldGates {
 			this.DungeonGate = GateBarrier.CreateGateBarrier(
 				config.Get<int>(nameof(config.DungeonGateHp)),
 				dungeonArea,
-				BarrierColor.BigBlue
+				Color.Blue
 			);
 			this.JungleGate = GateBarrier.CreateGateBarrier(
 				config.Get<int>(nameof(config.JungleGateHp)),
 				jungleArea,
-				BarrierColor.Green
+				new Color( 128, 255, 0 )
 			);
 			this.RockLayerGate = GateBarrier.CreateGateBarrier(
 				config.Get<int>(nameof(config.RockLayerGateHp)),
 				rockLayerArea,
-				BarrierColor.White
+				Color.White
 			);
 			this.LavaLayerGate = GateBarrier.CreateGateBarrier(
 				config.Get<int>(nameof(config.LavaLayerGateHp)),
 				lavaLayerArea,
-				BarrierColor.Yellow
+				Color.Yellow
 			);
 			this.UnderworldGate = GateBarrier.CreateGateBarrier(
 				config.Get<int>(nameof(config.UnderworldGateHp)),
 				underworldArea,
-				BarrierColor.Red
+				Color.Red
 			);
 			this.SkyGate = GateBarrier.CreateGateBarrier(
 				config.Get<int>(nameof(config.SkyGateHp)),
 				skyArea,
-				BarrierColor.White
+				Color.Cyan
 			);
 		}
 	}
