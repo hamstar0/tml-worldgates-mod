@@ -51,7 +51,7 @@ namespace WorldGates {
 
 			if( maxX <= minX ) {
 				minX = 1;
-				maxX = Main.maxTilesY - 1;
+				maxX = Main.maxTilesX - 1;
 			}
 
 			Tile tile;
@@ -59,6 +59,9 @@ namespace WorldGates {
 			for( int y=rockLayerScanStartY; y<WorldLocationLibraries.UnderworldLayerTopTileY; y++ ) {
 				for( int x=minX; x<maxX; x++ ) {
 					tile = Main.tile[x, y];
+					if( tile != null ) {
+						continue;
+					}
 					if( tile.liquid >= 1 && tile.lava() ) {
 						return y;
 					}
