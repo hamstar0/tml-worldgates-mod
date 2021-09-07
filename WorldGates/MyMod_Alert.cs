@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
+using ModLibsCore.Libraries.Debug;
 using SoulBarriers.Barriers.BarrierTypes;
 using SoulBarriers.Barriers.BarrierTypes.Rectangular;
 
@@ -8,15 +9,22 @@ using SoulBarriers.Barriers.BarrierTypes.Rectangular;
 namespace WorldGates {
 	public partial class WorldGatesMod : Mod {
 		private bool IsNearWorldGate( out Barrier barrier ) {
-			if( this.IsNearBarrier(this.DungeonGate as RectangularBarrier) ) {
+			if( this.DungeonGate == null ) {
+				LogLibraries.AlertOnce( "World gates not loaded." );
+
+				barrier = null;
+				return false;
+			}
+
+			if( this.IsNearRectangularBarrier(this.DungeonGate as RectangularBarrier) ) {
 				barrier = this.DungeonGate;
-			} else if( this.IsNearBarrier(this.JungleGate as RectangularBarrier) ) {
+			} else if( this.IsNearRectangularBarrier(this.JungleGate as RectangularBarrier) ) {
 				barrier = this.JungleGate;
-			} else if( this.IsNearBarrier(this.RockLayerGate as RectangularBarrier) ) {
+			} else if( this.IsNearRectangularBarrier(this.RockLayerGate as RectangularBarrier) ) {
 				barrier = this.RockLayerGate;
-			} else if( this.IsNearBarrier(this.LavaLayerGate as RectangularBarrier) ) {
+			} else if( this.IsNearRectangularBarrier(this.LavaLayerGate as RectangularBarrier) ) {
 				barrier = this.LavaLayerGate;
-			} else if( this.IsNearBarrier(this.UnderworldGate as RectangularBarrier) ) {
+			} else if( this.IsNearRectangularBarrier(this.UnderworldGate as RectangularBarrier) ) {
 				barrier = this.UnderworldGate;
 			} else {
 				barrier = null;
@@ -25,9 +33,8 @@ namespace WorldGates {
 			return barrier != null;
 		}
 
-		public bool IsNearBarrier( RectangularBarrier barrier ) {
-			var rectBarrier = barrier as RectangularBarrier;
-			Rectangle rect = rectBarrier.WorldArea;
+		public bool IsNearRectangularBarrier( RectangularBarrier barrier ) {
+			Rectangle rect = barrier.WorldArea;
 
 			rect.X -= 8 * 16;
 			rect.Y -= 16 * 16;
