@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using ModLibsCore.Services.Hooks.LoadHooks;
 using SoulBarriers.Barriers.BarrierTypes;
@@ -37,7 +38,9 @@ namespace WorldGates {
 
 		public override void PostSetupContent() {
 			LoadHooks.AddPostWorldLoadEachHook( () => {
-				this.InitializeGates();
+				if( Main.netMode != NetmodeID.MultiplayerClient ) {
+					this.InitializeGates();
+				}
 			} );
 		}
 

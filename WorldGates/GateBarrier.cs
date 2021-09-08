@@ -5,14 +5,22 @@ using Terraria.ID;
 using ModLibsCore.Classes.Errors;
 using ModLibsCore.Libraries.Debug;
 using SoulBarriers;
-using SoulBarriers.Barriers;
 using SoulBarriers.Barriers.BarrierTypes;
 using SoulBarriers.Barriers.BarrierTypes.Rectangular.Access;
+using WorldGates.Packets;
 
 
 namespace WorldGates {
 	public class GateBarrier : AccessBarrier {
-		public static Barrier CreateGateBarrier( double strength, Rectangle tileArea, Color color ) {
+		public static Barrier CreateGateBarrier(
+					double strength,
+					Rectangle tileArea,
+					Color color,
+					bool syncFromServer ) {
+			if( syncFromServer && Main.netMode == NetmodeID.MultiplayerClient ) {
+				throw new ModLibsException( "Is client." );
+			}
+
 			var worldArea = new Rectangle(
 				x: tileArea.X * 16,
 				y: tileArea.Y * 16,
@@ -27,7 +35,13 @@ namespace WorldGates {
 				isSaveable: false
 			);
 
-			SoulBarriersAPI.DeclareWorldBarrier( barrier );
+			SoulBarriersAPI.DeclareWorldBarrierUnsynced( barrier );
+
+			//
+
+			if( syncFromServer && Main.netMode == NetmodeID.Server ) {
+				GateBarrierCreate.BroadcastToClients( barrier );
+			}
 
 			return barrier;
 		}

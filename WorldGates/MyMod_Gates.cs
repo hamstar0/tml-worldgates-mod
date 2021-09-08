@@ -6,7 +6,6 @@ using Terraria.ModLoader;
 using ModLibsCore.Classes.Errors;
 using ModLibsCore.Libraries.Debug;
 using ModLibsGeneral.Libraries.World;
-using SoulBarriers.Barriers;
 
 
 namespace WorldGates {
@@ -59,7 +58,7 @@ namespace WorldGates {
 			for( int y=rockLayerScanStartY; y<WorldLocationLibraries.UnderworldLayerTopTileY; y++ ) {
 				for( int x=minX; x<maxX; x++ ) {
 					tile = Main.tile[x, y];
-					if( tile != null ) {
+					if( tile == null ) {
 						continue;
 					}
 					if( tile.liquid >= 1 && tile.lava() ) {
@@ -126,32 +125,38 @@ namespace WorldGates {
 			this.DungeonGate = GateBarrier.CreateGateBarrier(
 				config.Get<int>(nameof(config.DungeonGateHp)),
 				dungeonArea,
-				Color.Blue
+				Color.Blue,
+				Main.netMode == NetmodeID.Server
 			);
 			this.JungleGate = GateBarrier.CreateGateBarrier(
 				config.Get<int>(nameof(config.JungleGateHp)),
 				jungleArea,
-				new Color( 128, 255, 0 )
+				new Color( 128, 255, 0 ),
+				Main.netMode == NetmodeID.Server
 			);
 			this.RockLayerGate = GateBarrier.CreateGateBarrier(
 				config.Get<int>(nameof(config.RockLayerGateHp)),
 				rockLayerArea,
-				Color.White
+				Color.White,
+				Main.netMode == NetmodeID.Server
 			);
 			this.LavaLayerGate = GateBarrier.CreateGateBarrier(
 				config.Get<int>(nameof(config.LavaLayerGateHp)),
 				lavaLayerArea,
-				Color.Yellow
+				Color.Yellow,
+				Main.netMode == NetmodeID.Server
 			);
 			this.UnderworldGate = GateBarrier.CreateGateBarrier(
 				config.Get<int>(nameof(config.UnderworldGateHp)),
 				underworldArea,
-				Color.Red
+				Color.Red,
+				Main.netMode == NetmodeID.Server
 			);
 			this.SkyGate = GateBarrier.CreateGateBarrier(
 				config.Get<int>(nameof(config.SkyGateHp)),
 				skyArea,
-				Color.Cyan
+				Color.Cyan,
+				Main.netMode == NetmodeID.Server
 			);
 		}
 	}
