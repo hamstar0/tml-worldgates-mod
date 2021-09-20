@@ -75,8 +75,8 @@ namespace WorldGates {
 					Main.NewText( "Gate barrier is too strong. +"+str+" strength needed to breach.", Color.Yellow );
 					Main.PlaySound( SoundID.NPCHit53 );
 				} else {
-					Main.NewText( "Access granted.", Color.Lime );
-					Main.PlaySound( SoundID.Item94 );
+					//Main.NewText( "Access granted.", Color.Lime );
+					//Main.PlaySound( SoundID.Item94 );
 				}
 			} );
 		}
