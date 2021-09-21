@@ -158,6 +158,15 @@ namespace WorldGates {
 				Color.Cyan,
 				Main.netMode == NetmodeID.Server
 			);
+
+			//
+
+			this.WorldGates.Add( this.DungeonGate );
+			this.WorldGates.Add( this.JungleGate );
+			this.WorldGates.Add( this.RockLayerGate );
+			this.WorldGates.Add( this.LavaLayerGate );
+			this.WorldGates.Add( this.UnderworldGate );
+			this.WorldGates.Add( this.SkyGate );
 		}
 	}
 }

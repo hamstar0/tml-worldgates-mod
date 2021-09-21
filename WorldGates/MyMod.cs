@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -31,6 +32,8 @@ namespace WorldGates {
 		public Barrier LavaLayerGate { get; private set; }
 		public Barrier UnderworldGate { get; private set; }
 		public Barrier SkyGate { get; private set; }
+
+		public IList<Barrier> WorldGates { get; private set; } = new List<Barrier>();
 
 
 

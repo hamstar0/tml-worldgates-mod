@@ -40,7 +40,7 @@ namespace WorldGates {
 			//
 
 			if( syncFromServer && Main.netMode == NetmodeID.Server ) {
-				GateBarrierCreate.BroadcastToClients( barrier );
+				GateBarrierCreatePacket.SendToClient( barrier, -1 );
 			}
 
 			return barrier;
@@ -64,6 +64,7 @@ namespace WorldGates {
 			} );
 
 			this.OnBarrierBarrierCollision.Add( ( barrier ) => {
+//LogLibraries.Log( "B V B OnBarrierBarrierCollision 2 - " + this.Strength );
 				if( this.Strength > 0d ) {
 					string str;
 					if( (this.Strength % 1d) > 0d ) {

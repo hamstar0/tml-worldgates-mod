@@ -9,15 +9,15 @@ using SoulBarriers;
 
 
 namespace WorldGates.Packets {
-	class GateBarrierCreate : SimplePacketPayload {
-		public static void BroadcastToClients( GateBarrier barrier ) {
+	class GateBarrierCreatePacket : SimplePacketPayload {
+		public static void SendToClient( GateBarrier barrier, int playerWho ) {
 			if( Main.netMode != NetmodeID.Server ) {
 				throw new ModLibsException( "Not server." );
 			}
 
-			var packet = new GateBarrierCreate( barrier );
+			var packet = new GateBarrierCreatePacket( barrier );
 
-			SimplePacket.SendToClient( packet );
+			SimplePacket.SendToClient( packet, playerWho );
 		}
 
 
@@ -44,9 +44,9 @@ namespace WorldGates.Packets {
 
 		////////////////
 
-		private GateBarrierCreate() { }
+		private GateBarrierCreatePacket() { }
 
-		private GateBarrierCreate( GateBarrier barrier ) {
+		private GateBarrierCreatePacket( GateBarrier barrier ) {
 			this.HostType = (int)barrier.HostType;
 			this.HostWhoAmI = barrier.HostWhoAmI;
 			this.WorldArea = barrier.WorldArea;
