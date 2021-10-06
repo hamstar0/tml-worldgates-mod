@@ -26,5 +26,8 @@
     <Reference Include="SoulBarriers">
       <HintPath>..\..\..\Soul Barriers\Project\SoulBarriers\bin\Release\net452\SoulBarriers.dll</HintPath>
     </Reference>
+    <Reference Include="TheTrickster">
+      <HintPath>..\..\..\The Trickster\Project\TheTrickster\bin\Release\net452\TheTrickster.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

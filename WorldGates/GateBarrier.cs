@@ -2,6 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 using ModLibsCore.Classes.Errors;
 using ModLibsCore.Libraries.Debug;
 using SoulBarriers;
@@ -49,7 +50,7 @@ namespace WorldGates {
 
 
 		////////////////
-
+		
 		public GateBarrier( double strength, Rectangle tileArea, Color color, bool isSaveable )
 					: base(
 						strength: strength,
@@ -80,6 +81,28 @@ namespace WorldGates {
 					//Main.PlaySound( SoundID.Item94 );
 				}
 			} );
+		}
+
+
+		////////////////
+
+		public override bool CanHitNPC( NPC intruder ) {
+			if( WorldGatesMod.Instance.IsTricksterModLoaded ) {
+				if( !GateBarrier.CanHitNPC_TricksterRef(intruder) ) {
+					return false;
+				}
+			}
+
+			return base.CanHitNPC( intruder );
+		}
+
+		////
+
+		private static bool CanHitNPC_TricksterRef( NPC intruder ) {
+			if( intruder.type == ModContent.NPCType<TheTrickster.NPCs.TricksterNPC>() ) {
+				return false;	// TODO: Make this less hard coded
+			}
+			return true;
 		}
 	}
 }

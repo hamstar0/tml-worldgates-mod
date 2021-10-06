@@ -35,9 +35,15 @@ namespace WorldGates {
 
 		public IList<Barrier> WorldGates { get; private set; } = new List<Barrier>();
 
+		public bool IsTricksterModLoaded { get; private set; } = false;
+
 
 
 		////////////////
+
+		public override void Load() {
+			this.IsTricksterModLoaded = ModLoader.GetMod( "TheTrickster" ) != null;
+		}
 
 		public override void PostSetupContent() {
 			LoadHooks.AddPostWorldLoadEachHook( () => {
