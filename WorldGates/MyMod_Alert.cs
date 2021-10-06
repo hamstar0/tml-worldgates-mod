@@ -34,7 +34,7 @@ namespace WorldGates {
 		}
 
 		public bool IsNearRectangularBarrier( RectangularBarrier barrier ) {
-			Rectangle rect = barrier.WorldArea;
+			Rectangle rect = barrier.TileArea;
 
 			rect.X -= 8 * 16;
 			rect.Y -= 16 * 16;
