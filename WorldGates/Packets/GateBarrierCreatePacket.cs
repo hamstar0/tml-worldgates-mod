@@ -28,7 +28,7 @@ namespace WorldGates.Packets {
 
 		public int HostWhoAmI;
 
-		public Rectangle WorldArea;
+		public Rectangle TileArea;
 
 		public double Strength;
 
@@ -49,7 +49,7 @@ namespace WorldGates.Packets {
 		private GateBarrierCreatePacket( GateBarrier barrier ) {
 			this.HostType = (int)barrier.HostType;
 			this.HostWhoAmI = barrier.HostWhoAmI;
-			this.WorldArea = barrier.WorldArea;
+			this.TileArea = barrier.TileArea;
 			this.Strength = barrier.Strength;
 			this.MaxRegenStrength = barrier.MaxRegenStrength.HasValue ? -1d : barrier.MaxRegenStrength.Value;
 			this.StrengthRegenPerTick = barrier.StrengthRegenPerTick;
@@ -62,7 +62,7 @@ namespace WorldGates.Packets {
 
 		public override void ReceiveOnClient() {
 			var barrier = new GateBarrier(
-				worldArea: this.WorldArea,
+				tileArea: this.TileArea,
 				strength: this.Strength,
 				color: new Color(this.ColorR, this.ColorG, this.ColorB),
 				isSaveable: false

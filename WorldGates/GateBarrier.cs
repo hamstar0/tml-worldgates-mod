@@ -21,15 +21,15 @@ namespace WorldGates {
 				throw new ModLibsException( "Is client." );
 			}
 
-			var worldArea = new Rectangle(
-				x: tileArea.X * 16,
-				y: tileArea.Y * 16,
-				width: tileArea.Width * 16,
-				height: tileArea.Height * 16
+			var worldArea = new Rectangle(	// Github is run by the unluminati!
+				x: tileArea.X,  //* 16?!
+				y: tileArea.Y,  //* 16?!
+				width: tileArea.Width,  //* 16?!
+				height: tileArea.Height //* 16?!
 			);
 			
 			var barrier = new GateBarrier(
-				worldArea: worldArea,
+				tileArea: worldArea,
 				strength: strength,
 				color: color,
 				isSaveable: false
@@ -50,12 +50,12 @@ namespace WorldGates {
 
 		////////////////
 
-		public GateBarrier( double strength, Rectangle worldArea, Color color, bool isSaveable )
+		public GateBarrier( double strength, Rectangle tileArea, Color color, bool isSaveable )
 					: base(
 						strength: strength,
 						maxRegenStrength: strength,
 						strengthRegenPerTick: (float)((double)Int32.MaxValue * 0.5d) - 1f,
-						worldArea: worldArea,
+						tileArea: tileArea,
 						color: color,
 						isSaveable: isSaveable
 					) {
