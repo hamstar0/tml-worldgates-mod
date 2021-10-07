@@ -99,7 +99,9 @@ namespace WorldGates {
 		////
 
 		private static bool CanHitNPC_TricksterRef( NPC intruder ) {
-			if( intruder.type == ModContent.NPCType<TheTrickster.NPCs.TricksterNPC>() ) {
+			int tricksterType = ModLoader.GetMod("TheTrickster").NPCType( "TricksterNPC" );
+
+			if( intruder.type == tricksterType ) {
 				return false;	// TODO: Make this less hard coded
 			}
 			return true;
