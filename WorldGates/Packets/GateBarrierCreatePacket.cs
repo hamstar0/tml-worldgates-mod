@@ -16,7 +16,7 @@ namespace WorldGates.Packets {
 			}
 
 			var packet = new GateBarrierCreatePacket( barrier );
-
+			
 			SimplePacket.SendToClient( packet, playerWho );
 		}
 
@@ -67,7 +67,7 @@ namespace WorldGates.Packets {
 				color: new Color(this.ColorR, this.ColorG, this.ColorB),
 				isSaveable: false
 			);
-
+			
 			SoulBarriersAPI.DeclareWorldBarrierUnsynced( barrier );
 		}
 

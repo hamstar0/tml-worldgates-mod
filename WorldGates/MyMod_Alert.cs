@@ -73,7 +73,14 @@ namespace WorldGates {
 		////
 
 		private static void AlertForGateProximity_Messages( Barrier barrier ) {
+			Messages.MessagesAPI.AddMessagesInitializeEvent( () => {
+				WorldGatesMod.AlertForGateProximity_Messages_Event( barrier );
+			} );
+		}
+
+		private static void AlertForGateProximity_Messages_Event( Barrier barrier ) {
 			var config = WorldGatesConfig.Instance;
+
 			if( config.Get<bool>( nameof(config.WarnAboutGatesAndPBG) ) ) {
 				string id = "WorldGates_VsPBG";
 

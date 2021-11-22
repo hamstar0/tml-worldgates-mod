@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using ModLibsCore.Classes.PlayerData;
+using ModLibsCore.Libraries.Debug;
 using SoulBarriers.Barriers.BarrierTypes;
 using WorldGates.Packets;
 
