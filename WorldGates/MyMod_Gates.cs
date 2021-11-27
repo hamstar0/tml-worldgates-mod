@@ -123,40 +123,46 @@ namespace WorldGates {
 			//
 			
 			this.DungeonGate = GateBarrier.CreateGateBarrier(
-				config.Get<int>(nameof(config.DungeonGateHp)),
-				dungeonArea,
-				Color.Blue,
-				Main.netMode == NetmodeID.Server
+				id: "DungeonGate",
+				strength: config.Get<int>(nameof(config.DungeonGateHp)),
+				tileArea: dungeonArea,
+				color: Color.Blue,
+				syncFromServer: Main.netMode == NetmodeID.Server
 			);
 			this.JungleGate = GateBarrier.CreateGateBarrier(
-				config.Get<int>(nameof(config.JungleGateHp)),
-				jungleArea,
-				new Color( 128, 255, 0 ),
-				Main.netMode == NetmodeID.Server
+				id: "JungleGate",
+				strength: config.Get<int>(nameof(config.JungleGateHp)),
+				tileArea: jungleArea,
+				color: new Color( 128, 255, 0 ),
+				syncFromServer: Main.netMode == NetmodeID.Server
 			);
 			this.RockLayerGate = GateBarrier.CreateGateBarrier(
-				config.Get<int>(nameof(config.RockLayerGateHp)),
-				rockLayerArea,
-				Color.White,
-				Main.netMode == NetmodeID.Server
+				id: "RockLayerGate",
+				strength: config.Get<int>(nameof(config.RockLayerGateHp)),
+				tileArea: rockLayerArea,
+				color: Color.White,
+				syncFromServer: Main.netMode == NetmodeID.Server
 			);
 			this.LavaLayerGate = GateBarrier.CreateGateBarrier(
-				config.Get<int>(nameof(config.LavaLayerGateHp)),
-				lavaLayerArea,
-				Color.Yellow,
-				Main.netMode == NetmodeID.Server
+				id: "LavaLayerGate",
+				strength: config.Get<int>(nameof(config.LavaLayerGateHp)),
+				tileArea: lavaLayerArea,
+				color: Color.Yellow,
+				syncFromServer: Main.netMode == NetmodeID.Server
 			);
 			this.UnderworldGate = GateBarrier.CreateGateBarrier(
-				config.Get<int>(nameof(config.UnderworldGateHp)),
-				underworldArea,
-				Color.Red,
-				Main.netMode == NetmodeID.Server
+				id: "UnderworldGate",
+				strength: config.Get<int>(nameof(config.UnderworldGateHp)),
+				tileArea: underworldArea,
+				color: Color.Red,
+				syncFromServer: Main.netMode == NetmodeID.Server
 			);
 			this.SkyGate = GateBarrier.CreateGateBarrier(
-				config.Get<int>(nameof(config.SkyGateHp)),
-				skyArea,
-				Color.Cyan,
-				Main.netMode == NetmodeID.Server
+				id: "SkyGate",
+				strength: config.Get<int>(nameof(config.SkyGateHp)),
+				tileArea: skyArea,
+				color: Color.Cyan,
+				syncFromServer: Main.netMode == NetmodeID.Server
 			);
 
 			//

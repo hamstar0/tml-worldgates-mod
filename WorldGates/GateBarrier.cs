@@ -14,6 +14,7 @@ using WorldGates.Packets;
 namespace WorldGates {
 	public class GateBarrier : AccessBarrier {
 		public static Barrier CreateGateBarrier(
+					string id,
 					double strength,
 					Rectangle tileArea,
 					Color color,
@@ -30,6 +31,7 @@ namespace WorldGates {
 			);
 			
 			var barrier = new GateBarrier(
+				id: id,
 				tileArea: worldArea,
 				strength: strength,
 				color: color,
@@ -51,8 +53,9 @@ namespace WorldGates {
 
 		////////////////
 		
-		public GateBarrier( double strength, Rectangle tileArea, Color color, bool isSaveable )
+		public GateBarrier( string id, double strength, Rectangle tileArea, Color color, bool isSaveable )
 					: base(
+						id: id,
 						strength: strength,
 						maxRegenStrength: strength,
 						strengthRegenPerTick: (float)((double)Int32.MaxValue * 0.5d) - 1f,
