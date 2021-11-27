@@ -24,6 +24,8 @@ namespace WorldGates.Packets {
 
 		////////////////
 
+		public string ID;
+
 		public int HostType;
 
 		public int HostWhoAmI;
@@ -47,6 +49,7 @@ namespace WorldGates.Packets {
 		private GateBarrierCreatePacket() { }
 
 		private GateBarrierCreatePacket( GateBarrier barrier ) {
+			this.ID = barrier.ID;
 			this.HostType = (int)barrier.HostType;
 			this.HostWhoAmI = barrier.HostWhoAmI;
 			this.TileArea = barrier.TileArea;
@@ -62,6 +65,7 @@ namespace WorldGates.Packets {
 
 		public override void ReceiveOnClient() {
 			var barrier = new GateBarrier(
+				id: this.ID,
 				tileArea: this.TileArea,
 				strength: this.Strength,
 				color: new Color(this.ColorR, this.ColorG, this.ColorB),
