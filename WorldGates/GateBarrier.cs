@@ -9,7 +9,7 @@ using SoulBarriers;
 using SoulBarriers.Barriers.BarrierTypes;
 using SoulBarriers.Barriers.BarrierTypes.Rectangular.Access;
 using WorldGates.Packets;
-
+using SoulBarriers.Barriers;
 
 namespace WorldGates {
 	public class GateBarrier : AccessBarrier {
@@ -84,6 +84,14 @@ namespace WorldGates {
 					//Main.PlaySound( SoundID.Item94 );
 				}
 			} );
+		}
+
+
+		////////////////
+
+		public override bool IsBarrierColliding( Barrier barrier ) {
+			return barrier.HostType == BarrierHostType.Player
+				&& base.IsBarrierColliding( barrier );
 		}
 
 
