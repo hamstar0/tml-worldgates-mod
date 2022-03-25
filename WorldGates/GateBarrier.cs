@@ -63,11 +63,11 @@ namespace WorldGates {
 						color: color,
 						isSaveable: isSaveable
 					) {
-			this.OnPreBarrierBarrierCollision.Add( ( barrier ) => {
-				return !(barrier is AccessBarrier) && barrier.IsActive;
-			} );
+			bool preCollide( Barrier barrier, ref double damage ) {
+				return !( barrier is AccessBarrier ) && barrier.IsActive;
+			}
 
-			this.OnBarrierBarrierCollision.Add( ( barrier ) => {
+			void postCollide( Barrier otherBarrier, bool isDefaultHit, double damage ) {
 //LogLibraries.Log( "B V B OnBarrierBarrierCollision 2 - " + this.Strength );
 				if( this.Strength > 0d ) {
 					string str;
@@ -83,7 +83,12 @@ namespace WorldGates {
 					//Main.NewText( "Access granted.", Color.Lime );
 					//Main.PlaySound( SoundID.Item94 );
 				}
-			} );
+			}
+
+			//
+
+			this.OnPreBarrierBarrierCollision.Add( preCollide );
+			this.OnPostBarrierBarrierCollision.Add( postCollide );
 		}
 
 
