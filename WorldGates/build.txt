@@ -1,7 +1,7 @@
 displayName = World Gates
 author = hamstar
-version = 1.2.6.3
-modReferences = ModLibsCore@1.2.0, ModLibsGeneral@1.2.0, SoulBarriers@3.0.0
+version = 1.2.6.4
+modReferences = ModLibsCore@1.2.0, ModLibsGeneral@1.2.0, SoulBarriers@3.0.1
 weakReferences = Messages@1.1.2
 buildIgnore = *.csproj, *.user, *.bat, obj\*, bin\*, .vs\*, .git\*
 homepage = https://github.com/hamstar0/tml-worldgates-mod
