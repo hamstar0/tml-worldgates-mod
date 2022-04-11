@@ -74,7 +74,7 @@ namespace WorldGates {
 
 		////////////////
 
-		private void InitializeGates() {
+		public void InitializeGates() {
 			var config = WorldGatesConfig.Instance;
 			int barrierThick = 10;
 

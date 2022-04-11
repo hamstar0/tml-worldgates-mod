@@ -3,7 +3,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ModLibsCore.Libraries.Debug;
-using ModLibsCore.Services.Hooks.LoadHooks;
 using SoulBarriers.Barriers.BarrierTypes;
 
 
@@ -44,14 +43,6 @@ namespace WorldGates {
 
 		public override void Load() {
 			this.IsTricksterModLoaded = ModLoader.GetMod( "TheTrickster" ) != null;
-		}
-
-		public override void PostSetupContent() {
-			LoadHooks.AddPostWorldLoadEachHook( () => {
-				if( Main.netMode != NetmodeID.MultiplayerClient ) {
-					this.InitializeGates();
-				}
-			} );
 		}
 
 
