@@ -12,7 +12,42 @@ using SoulBarriers.Barriers.BarrierTypes;
 
 namespace WorldGates {
 	public partial class GateBarrierPresets : ILoadable {
-		public void InitializeAllGates(
+		public void InitializeGates() {
+			bool hasExistingGates = this.InitializeGatesFromExistingBarriers();
+
+			if( hasExistingGates ) {
+				return;
+			}
+
+			//
+
+			this.GetGatePositions(
+				out Rectangle dungeonArea,
+				out Rectangle jungleArea,
+				out Rectangle rockLayerArea,
+				out Rectangle lavaLayerArea,
+				out Rectangle underworldArea,
+				out Rectangle skyArea
+			);
+
+			//
+
+			this.UninitializeGates();
+
+			this.InitializeGatesAnew(
+				dungeonArea: dungeonArea,
+				jungleArea: jungleArea,
+				rockLayerArea: rockLayerArea,
+				lavaLayerArea: lavaLayerArea,
+				underworldArea: underworldArea,
+				skyArea: skyArea
+			);
+		}
+
+
+		////////////////
+
+		public void InitializeGatesAnew(
 					Rectangle dungeonArea,
 					Rectangle jungleArea,
 					Rectangle rockLayerArea,
@@ -77,7 +112,7 @@ namespace WorldGates {
 		}
 
 
-		public bool InitializeAllGatesFromExistingBarriers() {
+		public bool InitializeGatesFromExistingBarriers() {
 					//Rectangle dungeonArea,
 					//Rectangle jungleArea,
 					//Rectangle rockLayerArea,
