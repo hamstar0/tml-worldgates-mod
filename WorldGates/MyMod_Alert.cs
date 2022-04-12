@@ -13,18 +13,14 @@ namespace WorldGates {
 
 			//
 
-			if( gbp.DungeonGate != null && this.IsNearWorldBarrier(gbp.DungeonGate as RectangularBarrier) ) {
-				barrier = gbp.DungeonGate;
-			} else if( gbp.JungleGate != null && this.IsNearWorldBarrier(gbp.JungleGate as RectangularBarrier) ) {
-				barrier = gbp.JungleGate;
-			} else if( gbp.RockLayerGate != null && this.IsNearWorldBarrier(gbp.RockLayerGate as RectangularBarrier) ) {
-				barrier = gbp.RockLayerGate;
-			} else if( gbp.LavaLayerGate != null && this.IsNearWorldBarrier(gbp.LavaLayerGate as RectangularBarrier) ) {
-				barrier = gbp.LavaLayerGate;
-			} else if( gbp.UnderworldGate != null && this.IsNearWorldBarrier(gbp.UnderworldGate as RectangularBarrier) ) {
-				barrier = gbp.UnderworldGate;
-			} else {
-				barrier = null;
+			barrier = null;
+
+			foreach( Barrier gate in gbp.WorldGates ) {
+				if( this.IsNearWorldBarrier(gate as RectangularBarrier) ) {
+					barrier = gate;
+
+					break;
+				}
 			}
 
 			//
