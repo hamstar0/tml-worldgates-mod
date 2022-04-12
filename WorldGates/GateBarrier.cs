@@ -57,7 +57,9 @@ namespace WorldGates {
 
 
 		////////////////
-		
+
+		private GateBarrier() : base(default, default, default, default, default, default, default ) { }
+
 		public GateBarrier( string id, double strength, Rectangle tileArea, Color color, bool isSaveable )
 					: base(
 						id: id,
