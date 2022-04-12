@@ -72,7 +72,7 @@ namespace WorldGates.Packets {
 				isSaveable: false
 			);
 			
-			SoulBarriersAPI.DeclareWorldBarrierUnsynced( barrier );
+			SoulBarriersAPI.DeclareWorldBarrier( barrier, false );
 		}
 
 		public override void ReceiveOnServer( int fromWho ) {
