@@ -71,8 +71,14 @@ namespace WorldGates.Packets {
 				color: new Color(this.ColorR, this.ColorG, this.ColorB),
 				isSaveable: false
 			);
-			
+
+			//
+
 			SoulBarriersAPI.DeclareWorldBarrier( barrier, false );
+
+			//
+
+			GateBarrierPresets.Instance.InitializeGatesFromExistingBarriers();
 		}
 
 		public override void ReceiveOnServer( int fromWho ) {

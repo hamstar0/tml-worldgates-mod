@@ -155,6 +155,8 @@ namespace WorldGates {
 				this.WorldGates.Add( this.SkyGate );
 			}
 
+			//
+
 			return this.DungeonGate != null
 				&& this.JungleGate != null
 				&& this.RockLayerGate != null

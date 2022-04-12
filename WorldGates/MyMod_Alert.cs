@@ -9,35 +9,30 @@ using SoulBarriers.Barriers.BarrierTypes.Rectangular;
 namespace WorldGates {
 	public partial class WorldGatesMod : Mod {
 		private bool IsNearWorldGate( out Barrier barrier ) {
-			var presets = GateBarrierPresets.Instance;
-
-			if( presets.DungeonGate == null ) {
-				LogLibraries.AlertOnce( "World gates not loaded." );
-
-				barrier = null;
-				return false;
-			}
+			var gbp = GateBarrierPresets.Instance;
 
 			//
 
-			if( this.IsNearRectangularBarrier(presets.DungeonGate as RectangularBarrier) ) {
-				barrier = presets.DungeonGate;
-			} else if( this.IsNearRectangularBarrier(presets.JungleGate as RectangularBarrier) ) {
-				barrier = presets.JungleGate;
-			} else if( this.IsNearRectangularBarrier(presets.RockLayerGate as RectangularBarrier) ) {
-				barrier = presets.RockLayerGate;
-			} else if( this.IsNearRectangularBarrier(presets.LavaLayerGate as RectangularBarrier) ) {
-				barrier = presets.LavaLayerGate;
-			} else if( this.IsNearRectangularBarrier(presets.UnderworldGate as RectangularBarrier) ) {
-				barrier = presets.UnderworldGate;
+			if( gbp.DungeonGate != null && this.IsNearWorldBarrier(gbp.DungeonGate as RectangularBarrier) ) {
+				barrier = gbp.DungeonGate;
+			} else if( gbp.JungleGate != null && this.IsNearWorldBarrier(gbp.JungleGate as RectangularBarrier) ) {
+				barrier = gbp.JungleGate;
+			} else if( gbp.RockLayerGate != null && this.IsNearWorldBarrier(gbp.RockLayerGate as RectangularBarrier) ) {
+				barrier = gbp.RockLayerGate;
+			} else if( gbp.LavaLayerGate != null && this.IsNearWorldBarrier(gbp.LavaLayerGate as RectangularBarrier) ) {
+				barrier = gbp.LavaLayerGate;
+			} else if( gbp.UnderworldGate != null && this.IsNearWorldBarrier(gbp.UnderworldGate as RectangularBarrier) ) {
+				barrier = gbp.UnderworldGate;
 			} else {
 				barrier = null;
 			}
 
+			//
+
 			return barrier != null;
 		}
 
-		public bool IsNearRectangularBarrier( RectangularBarrier barrier ) {
+		public bool IsNearWorldBarrier( RectangularBarrier barrier ) {
 			Rectangle rect = barrier.TileArea;
 
 			rect.X -= 8 * 16;
