@@ -13,7 +13,7 @@ using WorldGates.Packets;
 
 
 namespace WorldGates {
-	public class GateBarrier : AccessBarrier {
+	public partial class GateBarrier : AccessBarrier, IBarrierFactory {
 		public static Barrier CreateGateBarrier(
 					string id,
 					double strength,
@@ -43,7 +43,7 @@ namespace WorldGates {
 				isSaveable: false
 			);
 
-			SoulBarriersAPI.DeclareWorldBarrierUnsynced( barrier );
+			SoulBarriersAPI.DeclareWorldBarrier( barrier, false );
 
 			//
 
@@ -68,6 +68,28 @@ namespace WorldGates {
 						color: color,
 						isSaveable: isSaveable
 					) {
+		}
+
+
+		////////////////
+
+		Barrier IBarrierFactory.FactoryCreate(
+					string id,
+					BarrierHostType hostType,
+					int hostWhoAmI,
+					object data,
+					double strength,
+					double maxRegenStrength,
+					double strengthRegenPerTick,
+					Color color,
+					bool isSaveable ) {
+			return new GateBarrier(
+				id: id,
+				strength: strength,
+				tileArea: (Rectangle)data,
+				color: color,
+				isSaveable: isSaveable
+			);
 		}
 
 

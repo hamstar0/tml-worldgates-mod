@@ -26,15 +26,6 @@ namespace WorldGates {
 
 		////////////////
 
-		public Barrier DungeonGate { get; private set; }
-		public Barrier JungleGate { get; private set; }
-		public Barrier RockLayerGate { get; private set; }
-		public Barrier LavaLayerGate { get; private set; }
-		public Barrier UnderworldGate { get; private set; }
-		public Barrier SkyGate { get; private set; }
-
-		public IList<Barrier> WorldGates { get; private set; } = new List<Barrier>();
-
 		public bool IsTricksterModLoaded { get; private set; } = false;
 
 

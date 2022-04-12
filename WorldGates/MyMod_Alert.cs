@@ -9,23 +9,27 @@ using SoulBarriers.Barriers.BarrierTypes.Rectangular;
 namespace WorldGates {
 	public partial class WorldGatesMod : Mod {
 		private bool IsNearWorldGate( out Barrier barrier ) {
-			if( this.DungeonGate == null ) {
+			var presets = GateBarrierPresets.Instance;
+
+			if( presets.DungeonGate == null ) {
 				LogLibraries.AlertOnce( "World gates not loaded." );
 
 				barrier = null;
 				return false;
 			}
 
-			if( this.IsNearRectangularBarrier(this.DungeonGate as RectangularBarrier) ) {
-				barrier = this.DungeonGate;
-			} else if( this.IsNearRectangularBarrier(this.JungleGate as RectangularBarrier) ) {
-				barrier = this.JungleGate;
-			} else if( this.IsNearRectangularBarrier(this.RockLayerGate as RectangularBarrier) ) {
-				barrier = this.RockLayerGate;
-			} else if( this.IsNearRectangularBarrier(this.LavaLayerGate as RectangularBarrier) ) {
-				barrier = this.LavaLayerGate;
-			} else if( this.IsNearRectangularBarrier(this.UnderworldGate as RectangularBarrier) ) {
-				barrier = this.UnderworldGate;
+			//
+
+			if( this.IsNearRectangularBarrier(presets.DungeonGate as RectangularBarrier) ) {
+				barrier = presets.DungeonGate;
+			} else if( this.IsNearRectangularBarrier(presets.JungleGate as RectangularBarrier) ) {
+				barrier = presets.JungleGate;
+			} else if( this.IsNearRectangularBarrier(presets.RockLayerGate as RectangularBarrier) ) {
+				barrier = presets.RockLayerGate;
+			} else if( this.IsNearRectangularBarrier(presets.LavaLayerGate as RectangularBarrier) ) {
+				barrier = presets.LavaLayerGate;
+			} else if( this.IsNearRectangularBarrier(presets.UnderworldGate as RectangularBarrier) ) {
+				barrier = presets.UnderworldGate;
 			} else {
 				barrier = null;
 			}

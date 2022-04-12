@@ -33,32 +33,25 @@ namespace WorldGates {
 		}
 
 		private void LoadGates() {
-			var mymod = WorldGatesMod.Instance;
-
-			mymod.GetGatePositions(
-				out Rectangle dungeonArea,
-				out Rectangle jungleArea,
-				out Rectangle rockLayerArea,
-				out Rectangle lavaLayerArea,
-				out Rectangle underworldArea,
-				out Rectangle skyArea
-			);
+			var presets = GateBarrierPresets.Instance;
 
 			//
 
-			bool hasExistingGates = mymod.RegisterExistingGates(
-				dungeonArea: dungeonArea,
-				jungleArea: jungleArea,
-				rockLayerArea: rockLayerArea,
-				lavaLayerArea: lavaLayerArea,
-				underworldArea: underworldArea,
-				skyArea: skyArea
-			);
+			bool hasExistingGates = presets.InitializeAllGatesFromExistingBarriers();
 
 			//
 
 			if( !hasExistingGates ) {
-				mymod.InitializeGates(
+				presets.GetGatePositions(
+					out Rectangle dungeonArea,
+					out Rectangle jungleArea,
+					out Rectangle rockLayerArea,
+					out Rectangle lavaLayerArea,
+					out Rectangle underworldArea,
+					out Rectangle skyArea
+				);
+
+				presets.InitializeAllGates(
 					dungeonArea: dungeonArea,
 					jungleArea: jungleArea,
 					rockLayerArea: rockLayerArea,
@@ -79,11 +72,11 @@ namespace WorldGates {
 		////////////////
 
 		public override void PostWorldGen() {
-			var mymod = WorldGatesMod.Instance;
+			var presets = GateBarrierPresets.Instance;
 
 			//
 
-			mymod.GetGatePositions(
+			presets.GetGatePositions(
 				out Rectangle dungeonArea,
 				out Rectangle jungleArea,
 				out Rectangle rockLayerArea,
@@ -93,8 +86,8 @@ namespace WorldGates {
 			);
 
 			//
-			
-			WorldGatesMod.Instance.InitializeGates(
+
+			presets.InitializeAllGates(
 				dungeonArea: dungeonArea,
 				jungleArea: jungleArea,
 				rockLayerArea: rockLayerArea,

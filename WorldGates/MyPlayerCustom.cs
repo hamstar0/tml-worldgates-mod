@@ -11,7 +11,7 @@ namespace WorldGates {
 	public class WorldGatesCustomPlayer : CustomPlayerData {
 		protected override void OnEnter( bool isCurrentPlayer, object data ) {
 			if( Main.netMode == NetmodeID.Server ) {
-				foreach( Barrier barrier in WorldGatesMod.Instance.WorldGates ) {
+				foreach( Barrier barrier in GateBarrierPresets.Instance.WorldGates ) {
 					GateBarrierCreatePacket.SendToClient( barrier as GateBarrier, this.PlayerWho );
 				}
 			}
