@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 using ModLibsCore.Classes.Errors;
 using ModLibsCore.Libraries.Debug;
 using ModLibsGeneral.Libraries.World;
+using SoulBarriers.Barriers.BarrierTypes;
 
 
 namespace WorldGates {
@@ -74,8 +75,13 @@ namespace WorldGates {
 
 		////////////////
 
-		public void InitializeGates() {
-			var config = WorldGatesConfig.Instance;
+		public void GetGatePositions(
+					out Rectangle dungeonArea,
+					out Rectangle jungleArea,
+					out Rectangle rockLayerArea,
+					out Rectangle lavaLayerArea,
+					out Rectangle underworldArea,
+					out Rectangle skyArea ) {
 			int barrierThick = 10;
 
 			bool isDungeonLeft = Main.dungeonX < (Main.maxTilesX / 2);
@@ -108,17 +114,28 @@ namespace WorldGates {
 
 			//
 
-			Rectangle dungeonArea = getTallBarrier( Main.dungeonX + (isDungeonLeft ? 50 : -50) );
-			Rectangle jungleArea = getTallBarrier( jungleX );
-			Rectangle rockLayerArea = getFatBarrier( WorldLocationLibraries.RockLayerTopTileY );
-			Rectangle lavaLayerArea = getFatBarrier( lavaLine );
-			Rectangle underworldArea = getFatBarrier( WorldLocationLibraries.UnderworldLayerTopTileY );
-			Rectangle skyArea = getFatBarrier( WorldLocationLibraries.SkyLayerBottomTileY );
+			dungeonArea = getTallBarrier( Main.dungeonX + (isDungeonLeft ? 50 : -50) );
+			jungleArea = getTallBarrier( jungleX );
+			rockLayerArea = getFatBarrier( WorldLocationLibraries.RockLayerTopTileY );
+			lavaLayerArea = getFatBarrier( lavaLine );
+			underworldArea = getFatBarrier( WorldLocationLibraries.UnderworldLayerTopTileY );
+			skyArea = getFatBarrier( WorldLocationLibraries.SkyLayerBottomTileY );
 			//LogLibraries.Log( "dungeonArea: "+dungeonArea );
 			//LogLibraries.Log( "jungleArea: "+jungleArea );
 			//LogLibraries.Log( "rockLayerArea: "+rockLayerArea );
 			//LogLibraries.Log( "lavaLayerArea: "+lavaLayerArea );
 			//LogLibraries.Log( "underworldArea: "+underworldArea );
+		}
+
+
+		public void InitializeGates(
+					Rectangle dungeonArea,
+					Rectangle jungleArea,
+					Rectangle rockLayerArea,
+					Rectangle lavaLayerArea,
+					Rectangle underworldArea,
+					Rectangle skyArea ) {
+			var config = WorldGatesConfig.Instance;
 
 			//
 			
@@ -173,6 +190,61 @@ namespace WorldGates {
 			this.WorldGates.Add( this.LavaLayerGate );
 			this.WorldGates.Add( this.UnderworldGate );
 			this.WorldGates.Add( this.SkyGate );
+		}
+
+
+		public bool RegisterExistingGates(
+					Rectangle dungeonArea,
+					Rectangle jungleArea,
+					Rectangle rockLayerArea,
+					Rectangle lavaLayerArea,
+					Rectangle underworldArea,
+					Rectangle skyArea ) {
+			this.DungeonGate = SoulBarriers.SoulBarriersAPI.GetWorldBarrier( dungeonArea );
+			this.JungleGate = SoulBarriers.SoulBarriersAPI.GetWorldBarrier( jungleArea );
+			this.RockLayerGate = SoulBarriers.SoulBarriersAPI.GetWorldBarrier( rockLayerArea );
+			this.LavaLayerGate = SoulBarriers.SoulBarriersAPI.GetWorldBarrier( lavaLayerArea );
+			this.UnderworldGate = SoulBarriers.SoulBarriersAPI.GetWorldBarrier( underworldArea );
+			this.SkyGate = SoulBarriers.SoulBarriersAPI.GetWorldBarrier( skyArea );
+
+			//
+			
+			if( this.DungeonGate != null ) {
+				this.WorldGates.Add( this.DungeonGate );
+			}
+			if( this.JungleGate != null ) {
+				this.WorldGates.Add( this.JungleGate );
+			}
+			if( this.RockLayerGate != null ) {
+				this.WorldGates.Add( this.RockLayerGate );
+			}
+			if( this.LavaLayerGate != null ) {
+				this.WorldGates.Add( this.LavaLayerGate );
+			}
+			if( this.UnderworldGate != null ) {
+				this.WorldGates.Add( this.UnderworldGate );
+			}
+			if( this.SkyGate != null ) {
+				this.WorldGates.Add( this.SkyGate );
+			}
+
+			return this.DungeonGate != null
+				&& this.JungleGate != null
+				&& this.RockLayerGate != null
+				&& this.LavaLayerGate != null
+				&& this.UnderworldGate != null
+				&& this.SkyGate != null;
+		}
+
+
+		////////////////
+
+		internal void ClearAllWorldGates() {
+			foreach( Barrier barrier in this.WorldGates ) {
+				SoulBarriers.SoulBarriersAPI.RemoveWorldBarrier( ((GateBarrier)barrier).TileArea );
+			}
+
+			this.WorldGates.Clear();
 		}
 	}
 }

@@ -24,12 +24,16 @@ namespace WorldGates {
 				throw new ModLibsException( "Is client." );
 			}
 
+			//
+
 			var worldArea = new Rectangle(	// Github is run by the unluminati!
 				x: tileArea.X,  //* 16?!
 				y: tileArea.Y,  //* 16?!
 				width: tileArea.Width,  //* 16?!
 				height: tileArea.Height //* 16?!
 			);
+
+			//
 			
 			var barrier = new GateBarrier(
 				id: id,
