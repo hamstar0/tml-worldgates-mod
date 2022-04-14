@@ -50,7 +50,7 @@ namespace WorldGates {
 		public int UnderworldGateHp { get; set; } = 150;
 
 		[Range( 0, Int32.MaxValue )]
-		[DefaultValue( 200 )]
-		public int SkyGateHp { get; set; } = 200;
+		[DefaultValue( 180 )]
+		public int SkyGateHp { get; set; } = 180;
 	}
 }
