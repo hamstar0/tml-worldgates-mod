@@ -17,14 +17,14 @@ namespace WorldGates {
 
 		////////////////
 
-		public Barrier DungeonGate { get; private set; }
-		public Barrier JungleGate { get; private set; }
-		public Barrier RockLayerGate { get; private set; }
-		public Barrier LavaLayerGate { get; private set; }
-		public Barrier UnderworldGate { get; private set; }
-		public Barrier SkyGate { get; private set; }
+		public readonly string DungeonGateName = "DungeonGate";
+		public readonly string JungleGateName = "JungleGate";
+		public readonly string RockLayerGateName = "RockLayerGate";
+		public readonly string LavaLayerGateName = "LavaLayerGate";
+		public readonly string UnderworldGateName = "UnderworldGate";
+		public readonly string SkyGateName = "SkyGate";
 
-		public IList<Barrier> WorldGates { get; private set; } = new List<Barrier>();
+		public IDictionary<string, Barrier> WorldGates { get; } = new Dictionary<string, Barrier>();
 
 
 

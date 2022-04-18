@@ -1,8 +1,8 @@
 using System;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using ModLibsCore.Classes.Errors;
 using ModLibsCore.Libraries.Debug;
 using SoulBarriers;
@@ -97,33 +97,44 @@ namespace WorldGates {
 
 		////////////////
 
-		public override bool IsBarrierColliding( Barrier barrier ) {
-			return barrier.HostType == BarrierHostType.Player
-				&& base.IsBarrierColliding( barrier );
-		}
-
-
-		////////////////
-
-		public override bool CanHitNPC( NPC intruder ) {
-			if( WorldGatesMod.Instance.IsTricksterModLoaded ) {
-				if( !GateBarrier.CanHitNPC_TricksterRef(intruder) ) {
-					return false;
-				}
-			}
-
-			return base.CanHitNPC( intruder );
-		}
-
-		////
-
-		private static bool CanHitNPC_TricksterRef( NPC intruder ) {
-			int tricksterType = ModLoader.GetMod("TheTrickster").NPCType( "TricksterNPC" );
-
-			if( intruder.type == tricksterType ) {
-				return false;	// TODO: Make this less hard coded
-			}
+		bool IBarrierFactory.CanSync() {
 			return true;
+		}
+
+		Barrier IBarrierFactory.NetReceiveAsNewBarrier( BinaryReader reader ) {
+			string id = reader.ReadString();
+			double str = reader.ReadDouble();
+			var area = new Rectangle(
+				x: reader.ReadInt32(),
+				y: reader.ReadInt32(),
+				width: reader.ReadInt32(),
+				height: reader.ReadInt32()
+			);
+			var color = new Color(
+				r: reader.ReadByte(),
+				g: reader.ReadByte(),
+				b: reader.ReadByte()
+			);
+
+			return new GateBarrier(
+				id: id,
+				strength: str,
+				tileArea: area,
+				color: color,
+				isSaveable: false
+			);
+		}
+
+		void IBarrierFactory.NetSend( BinaryWriter writer ) {
+			writer.Write( (string)this.ID );
+			writer.Write( (double)this.MaxRegenStrength.Value );
+			writer.Write( (int)this.TileArea.X );
+			writer.Write( (int)this.TileArea.Y );
+			writer.Write( (int)this.TileArea.Width );
+			writer.Write( (int)this.TileArea.Height );
+			writer.Write( (byte)this.Color.R );
+			writer.Write( (byte)this.Color.G );
+			writer.Write( (byte)this.Color.B );
 		}
 	}
 }

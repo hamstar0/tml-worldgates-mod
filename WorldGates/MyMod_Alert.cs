@@ -15,7 +15,7 @@ namespace WorldGates {
 
 			barrier = null;
 
-			foreach( Barrier gate in gbp.WorldGates ) {
+			foreach( Barrier gate in gbp.WorldGates.Values ) {
 				if( this.IsNearWorldBarrier(gate as RectangularBarrier) ) {
 					barrier = gate;
 
