@@ -78,7 +78,9 @@ namespace WorldGates.Packets {
 
 			//
 
-			GateBarrierPresets.Instance.InitializeGatesFromExistingBarriers();
+			GateBarrierPresets.Instance.InitializeAllGatesFromExistingBarriers( out string result );
+
+			LogLibraries.Alert( result );
 		}
 
 		public override void ReceiveOnServer( int fromWho ) {
