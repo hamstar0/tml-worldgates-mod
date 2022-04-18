@@ -13,9 +13,7 @@ using SoulBarriers.Barriers.BarrierTypes;
 namespace WorldGates {
 	public partial class GateBarrierPresets : ILoadable {
 		public void InitializeGates() {
-			bool hasExistingGates = this.InitializeGatesFromExistingBarriers();
-
-			if( hasExistingGates ) {
+			if( this.InitializeGatesFromExistingBarriers() ) {
 				return;
 			}
 
@@ -154,54 +152,66 @@ namespace WorldGates {
 
 			//
 			
-			if( !(dungeonGate is GateBarrier) ) {
+			if( dungeonGate != null && !(dungeonGate is GateBarrier) ) {
 				throw new ModLibsException( "Discovered dungeon gate is not GateBarrier" );
 			}
-			if( !(jungleGate is GateBarrier) ) {
+			if( jungleGate != null && !(jungleGate is GateBarrier) ) {
 				throw new ModLibsException( "Discovered jungle gate is not GateBarrier" );
 			}
-			if( !(rockLayerGate is GateBarrier) ) {
+			if( rockLayerGate != null && !(rockLayerGate is GateBarrier) ) {
 				throw new ModLibsException( "Discovered rock layer gate is not GateBarrier" );
 			}
-			if( !(lavaLayerGate is GateBarrier) ) {
+			if( lavaLayerGate != null && !(lavaLayerGate is GateBarrier) ) {
 				throw new ModLibsException( "Discovered lava layer gate is not GateBarrier" );
 			}
-			if( !(underworldGate is GateBarrier) ) {
+			if( underworldGate != null && !(underworldGate is GateBarrier) ) {
 				throw new ModLibsException( "Discovered underworld layer gate is not GateBarrier" );
 			}
-			if( !(skyGate is GateBarrier) ) {
+			if( skyGate != null && !(skyGate is GateBarrier) ) {
 				throw new ModLibsException( "Discovered sky layer gate is not GateBarrier" );
 			}
 
 			//
 			
-			if( !this.WorldGates.ContainsKey(this.DungeonGateName) && dungeonGate != null ) {
-				this.WorldGates[this.DungeonGateName] = dungeonGate;
+			if( !this.WorldGates.ContainsKey(this.DungeonGateName) ) {
+				if( dungeonGate != null ) {
+					this.WorldGates[this.DungeonGateName] = dungeonGate;
+				}
 			} else {
 				throw new ModLibsException( "Pre-existing dungeon gate found." );
 			}
-			if( !this.WorldGates.ContainsKey(this.JungleGateName) && jungleGate != null ) {
-				this.WorldGates[this.JungleGateName] = jungleGate;
+			if( !this.WorldGates.ContainsKey(this.JungleGateName ) ) {
+				if( jungleGate != null ) {
+					this.WorldGates[this.JungleGateName] = jungleGate;
+				}
 			} else {
 				throw new ModLibsException( "Pre-existing jungle gate found." );
 			}
-			if( !this.WorldGates.ContainsKey(this.RockLayerGateName) && rockLayerGate != null ) {
-				this.WorldGates[this.RockLayerGateName] = rockLayerGate;
+			if( !this.WorldGates.ContainsKey(this.RockLayerGateName ) ) {
+				if( rockLayerGate != null ) {
+					this.WorldGates[this.RockLayerGateName] = rockLayerGate;
+				}
 			} else {
 				throw new ModLibsException( "Pre-existing rock layer gate found." );
 			}
-			if( !this.WorldGates.ContainsKey(this.LavaLayerGateName) && lavaLayerGate != null ) {
-				this.WorldGates[this.LavaLayerGateName] = lavaLayerGate;
+			if( !this.WorldGates.ContainsKey(this.LavaLayerGateName ) ) {
+				if( lavaLayerGate != null ) {
+					this.WorldGates[this.LavaLayerGateName] = lavaLayerGate;
+				}
 			} else {
 				throw new ModLibsException( "Pre-existing lava layer gate found." );
 			}
-			if( !this.WorldGates.ContainsKey(this.UnderworldGateName) && underworldGate != null ) {
-				this.WorldGates[this.UnderworldGateName] = underworldGate;
+			if( !this.WorldGates.ContainsKey(this.UnderworldGateName ) ) {
+				if( underworldGate != null ) {
+					this.WorldGates[this.UnderworldGateName] = underworldGate;
+				}
 			} else {
 				throw new ModLibsException( "Pre-existing underworld gate found." );
 			}
-			if( !this.WorldGates.ContainsKey(this.SkyGateName) && skyGate != null ) {
-				this.WorldGates[this.SkyGateName] = skyGate;
+			if( !this.WorldGates.ContainsKey(this.SkyGateName ) ) {
+				if( skyGate != null ) {
+					this.WorldGates[this.SkyGateName] = skyGate;
+				}
 			} else {
 				throw new ModLibsException( "Pre-existing sky gate found." );
 			}
