@@ -14,7 +14,7 @@ using WorldGates.Packets;
 
 namespace WorldGates {
 	public partial class GateBarrier : AccessBarrier, IBarrierFactory {
-		public static Barrier CreateGateBarrier(
+		public static Barrier CreateGateBarrier_Host(
 					string id,
 					double strength,
 					Rectangle tileArea,

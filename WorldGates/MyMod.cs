@@ -53,6 +53,8 @@ namespace WorldGates {
 				return;
 			}
 
+			//
+
 			if( this.IsNearWorldGate(out Barrier barrier) ) {
 				this.AlertForGateProximity( barrier );
 
