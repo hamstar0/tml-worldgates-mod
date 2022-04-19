@@ -127,7 +127,7 @@ namespace WorldGates {
 
 		void IBarrierFactory.NetSend( BinaryWriter writer ) {
 			writer.Write( (string)this.ID );
-			writer.Write( (double)this.MaxRegenStrength.Value );
+			writer.Write( (double)this.Strength );
 			writer.Write( (int)this.TileArea.X );
 			writer.Write( (int)this.TileArea.Y );
 			writer.Write( (int)this.TileArea.Width );
