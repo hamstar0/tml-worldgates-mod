@@ -38,19 +38,19 @@ namespace WorldGates {
 		public int JungleGateHp { get; set; } = 30;
 
 		[Range( 0, Int32.MaxValue )]
-		[DefaultValue( 40 )]
-		public int RockLayerGateHp { get; set; } = 40;
+		[DefaultValue( 35 )]
+		public int RockLayerGateHp { get; set; } = 35;
 
 		[Range( 0, Int32.MaxValue )]
-		[DefaultValue( 80 )]
-		public int LavaLayerGateHp { get; set; } = 80;
+		[DefaultValue( 75 )]
+		public int LavaLayerGateHp { get; set; } = 75;
 
 		[Range( 0, Int32.MaxValue )]
-		[DefaultValue( 150 )]
-		public int UnderworldGateHp { get; set; } = 150;
+		[DefaultValue( 145 )]
+		public int UnderworldGateHp { get; set; } = 145;
 
 		[Range( 0, Int32.MaxValue )]
-		[DefaultValue( 180 )]
-		public int SkyGateHp { get; set; } = 180;
+		[DefaultValue( 175 )]
+		public int SkyGateHp { get; set; } = 175;
 	}
 }
